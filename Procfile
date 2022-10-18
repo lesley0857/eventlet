@@ -1,1 +1,1 @@
-web: gunicorn --worker-class=eventlet -b 0.0.0.0:8000 chatbox.wsgi:app
+web: gunicorn --worker-class=eventlet  chatbox.wsgi:app

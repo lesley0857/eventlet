@@ -25,4 +25,4 @@ app = socketio.WSGIApp(sio,application)
 
 
 
-eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 8000)), app)
+eventlet.wsgi.server(eventlet.listen(('', 8000)), app)
