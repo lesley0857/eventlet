@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 """
 import socketio
 import os
-import eventlet.wsgi
+import eventlet
 
 
 from django.core.wsgi import get_wsgi_application
@@ -16,7 +16,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
 sio = socketio.Server(async_mode='eventlet')
 application = get_wsgi_application()
-#app = socketio.WSGIApp(sio,application)
+app = socketio.WSGIApp(sio,application)
 
 
 #original
@@ -25,4 +25,4 @@ application = get_wsgi_application()
 
 
 
-#eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 8000)), app)
+eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 8000)), app)

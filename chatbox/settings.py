@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'chatbox.wsgi.application'
+WSGI_APPLICATION = 'chatbox.wsgi.app'
 
 
 # Database
