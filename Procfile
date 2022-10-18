@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet chatbox.wsgi
+web: gunicorn -w 1 --worker-class eventlet chatbox.wsgi
