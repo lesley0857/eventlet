@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 import socketio
 import os
 import eventlet
-
+import socket
 
 from django.core.wsgi import get_wsgi_application
 
@@ -23,6 +23,7 @@ app = socketio.WSGIApp(sio,application)
 #application = get_wsgi_application()
 
 
-
-socketio.gethostname
-eventlet.wsgi.server(eventlet.listen(('leschatbox.herokuapp.com', 8000)), app)
+o=socket.gethostname()
+s = socket.gethostbyname(o)
+print(s)
+eventlet.wsgi.server(eventlet.listen((f'{s}', 8000)), app)
