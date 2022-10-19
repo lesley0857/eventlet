@@ -27,4 +27,4 @@ s = socket.gethostbyname(y)
 print(s)
 
 
-eventlet.wsgi.server(eventlet.listen((f'{s}', 8000)), app)
+eventlet.wsgi.server(eventlet.listen((s, 8000)), app)
