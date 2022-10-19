@@ -27,6 +27,5 @@ o=socket.gethostname()
 s = socket.gethostbyname(o)
 print(s)
 
-p = socketio.listener.getsockname()
-print(p)
-eventlet.wsgi.server(eventlet.listen((0.0.0.0,8000)), app)
+
+eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)), app)
