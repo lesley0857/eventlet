@@ -16,14 +16,15 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
 sio = socketio.Server(async_mode='eventlet')
 application = get_wsgi_application()
-app = socketio.WSGIApp(sio,application)
+app = socketio.WSGIApp(sio)
 
 
 #original
 #application = get_wsgi_application()
 
-
-o=socket.gethostname()
-s = socket.gethostbyname(o)
+y=socket.gethostname()
+s = socket.gethostbyname(y)
 print(s)
+
+
 eventlet.wsgi.server(eventlet.listen((f'{s}', 8000)), app)
