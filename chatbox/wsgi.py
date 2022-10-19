@@ -14,7 +14,7 @@ import socket
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
-sio = socketio.Server(async_mode='eventlet')
+sio = socketio.Server()
 application = get_wsgi_application()
 app = socketio.WSGIApp(sio,application)
 
@@ -22,9 +22,10 @@ app = socketio.WSGIApp(sio,application)
 #original
 #application = get_wsgi_application()
 
-y=socket.gethostname()
-s = socket.gethostbyname(y)
+
+o=socket.gethostname()
+s = socket.gethostbyname(o)
 print(s)
 
 
-eventlet.wsgi.server(eventlet.listen((s, 8000)), app)
+eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)), app)
