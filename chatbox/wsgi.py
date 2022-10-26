@@ -16,7 +16,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
 sio = socketio.Server(always_connect=True,logger=True,async_handlers=True,namespaces=['*'],async_mode='eventlet',cors_credentials=['*'])
 application = get_wsgi_application()
-app = socketio.WSGIApp(sio)
+app = socketio.WSGIApp(sio,application)
 
 
 #original
@@ -33,4 +33,4 @@ if ON_HEROKU:
 else:
     port = 8000
 
-eventlet.wsgi.server(eventlet.listen(('0.0.0.00',8000)), app)
+#eventlet.wsgi.server(eventlet.listen(('0.0.0.00',8000)), app)
