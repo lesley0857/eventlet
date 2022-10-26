@@ -14,7 +14,7 @@ import socket
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
-sio = socketio.Server()
+sio = socketio.Server(async_handlers=True,namespaces=['*'],async_mode='eventlet',cors_credentials=['*'])
 application = get_wsgi_application()
 app = socketio.WSGIApp(sio,application)
 
@@ -26,6 +26,11 @@ app = socketio.WSGIApp(sio,application)
 # o=socket.gethostname()
 # s = socket.gethostbyname(o)
 # print(s)
+ON_HEROKU = os.environ.get('ON_HEROKU')
+if ON_HEROKU:
+    # get the heroku port
+    port = int(os.environ.get("PORT", 17955))  # as per OP comments default is 17995
+else:
+    port = 8000
 
-
-eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8080)), app)
+eventlet.wsgi.server(eventlet.listen(('0.0.0.0',port)), app)
