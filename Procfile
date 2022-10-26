@@ -1,1 +1,1 @@
-web: gunicorn -w 1 -b leschatbox.herokuapp.com:8000 wsgi:app --worker-class eventlet --reload 
+web: gunicorn -w 1 -b 0.0.0.00:8000 wsgi:app --worker-class eventlet --reload 
