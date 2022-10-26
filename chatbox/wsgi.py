@@ -23,9 +23,9 @@ app = socketio.WSGIApp(sio,application)
 #application = get_wsgi_application()
 
 
-o=socket.gethostname()
-s = socket.gethostbyname(o)
-print(s)
+# o=socket.gethostname()
+# s = socket.gethostbyname(o)
+# print(s)
 
 
 eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)), app)

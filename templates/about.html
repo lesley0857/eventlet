@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" ></script>
  about page
+ <script>
+   console.log('kkll')
+   const socket = io('')
+   socket.on('connect',()=>{
+                              console.log(' login--- connected')
+                              socket.emit('sum','hello loginn')
+                           })
+</script>
 
 </body>
 </html>
