@@ -34,4 +34,4 @@ if ON_HEROKU:
 else:
     port = 8000
 
-eventlet.wsgi.server(eventlet.listen(('0.0.0.00',8000)), app)
+#eventlet.wsgi.server(eventlet.listen(('0.0.0.00',8000)), app)
