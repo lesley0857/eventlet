@@ -36,8 +36,3 @@ app = socketio.WSGIApp(sio,application)
 
 #eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)), app)
 
-@sio.event
-def connect(sid):
-    print('server conn')
-    sio.emit('message', 'welcome')
-    print('server conn')

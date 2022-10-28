@@ -15,12 +15,8 @@ sio = socketio.Server(async_mode='eventlet')
 
 # Create your views here.
 
-@sio.event
-def connect(sid):
-    print('server conn')
-    sio.emit('message', 'welcome')
-    print('server conn')
-    
+
+
 class home_view(View):
     def get(self,request):
         context={'i':'nht'}
