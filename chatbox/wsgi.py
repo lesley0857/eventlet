@@ -15,7 +15,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
 k = eventlet
-sio = socketio.Server(always_connect=True,logger=True,async_handlers=True,namespaces=['*'],async_mode='eventlet',cors_credentials=['*'])
+sio = socketio.Server(async_mode='eventlet',cors_credentials=['*'])
 application = get_wsgi_application()
 app = socketio.WSGIApp(sio,application)
 
@@ -27,21 +27,17 @@ app = socketio.WSGIApp(sio,application)
 # o=socket.gethostname()
 # s = socket.gethostbyname(o)
 # print(s)
-ON_HEROKU = os.environ.get('ON_HEROKU')
-if ON_HEROKU:
-    # get the heroku port
-    port = int(os.environ.get("PORT", 17955))  # as per OP comments default is 17995
-else:
-    port = 8000
+# ON_HEROKU = os.environ.get('ON_HEROKU')
+# if ON_HEROKU:
+#     # get the heroku port
+#     port = int(os.environ.get("PORT", 17955))  # as per OP comments default is 17995
+# else:
+#     port = 8000
 
-#eventlet.wsgi.server(eventlet.listen(('0.0.0.00',8000)), app)
-@sio.event
-    def connect(sid, environ):
-        sio.emit('message', 'welcome')
-        print('server conn')
+#eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)), app)
 
 @sio.event
-    def me(sid, data):
-
-        sio.emit('me', 'live', to=sid)
-        print(data)
+def connect(sid):
+    print('server conn')
+    sio.emit('message', 'welcome')
+    print('server conn')

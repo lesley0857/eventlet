@@ -6,14 +6,15 @@
     
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js" ></script>
  about page
  <script>
    console.log('kkll')
-   const socket = io('')
+   const socket = io('http://127.0.0.1:8000')
    socket.on('connect',()=>{
-                              console.log(' login--- connected')
+                              console.log(' login--- connected');
                               socket.emit('me','hello loginn')
+                              console.log(' lo');
                            })
 </script>
 
