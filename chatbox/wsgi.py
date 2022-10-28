@@ -35,3 +35,13 @@ else:
     port = 8000
 
 #eventlet.wsgi.server(eventlet.listen(('0.0.0.00',8000)), app)
+@sio.event
+    def connect(sid, environ):
+        sio.emit('message', 'welcome')
+        print('server conn')
+
+@sio.event
+    def me(sid, data):
+
+        sio.emit('me', 'live', to=sid)
+        print(data)
