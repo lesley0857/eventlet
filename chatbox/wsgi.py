@@ -14,8 +14,8 @@ import socket
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbox.settings')
-k = eventlet
-sio = socketio.Server(async_mode='eventlet',cors_credentials=['*'])
+
+sio = socketio.Server(async_mode='eventlet',cors_allowed_origins='*')
 application = get_wsgi_application()
 app = socketio.WSGIApp(sio,application)
 
@@ -34,5 +34,15 @@ app = socketio.WSGIApp(sio,application)
 # else:
 #     port = 8000
 
-#eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)), app)
+@sio.event
+def connect(sid,environ):
+    print('server connect')
+    sio.emit('message', 'welcome')
+    
+@sio.event
+def me(sid, data):
+    sio.emit('me', 'live', to=sid)
+    print('hello',data)
+
+#eventlet.wsgi.server(eventlet.listen(('127.0.0.1',8000)), app)
 
